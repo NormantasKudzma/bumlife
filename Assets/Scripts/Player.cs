@@ -8,7 +8,7 @@ public class Player : Bum {
 	private float thirstUpdateTimeDelta = 3.5f;	
 	private int thirstUpdateValueDelta = 2;
 	private float nextThirstUpdate;	
-	
+
 	public int thirst {
 		get; set;
 	}
