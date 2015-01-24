@@ -14,10 +14,12 @@ public class Bottle : MonoBehaviour {
 	
 	}
 
-	private void OnCollisionEnter(Collision collision){
-		Bum bum = collision.gameObject.GetComponent<Bum>();
-		bum.increaseBottleCount ();
-		bum.addStenchRadius (this.AmountOfStench);
-		Destroy (GetComponent<Bottle>());
+	void OnCollisionEnter(Collision collision){
+		if (collision.gameObject.tag == "Bum") {
+			Bum bum = collision.gameObject.GetComponent<Bum>();
+			bum.increaseBottleCount();
+			bum.addStenchRadius(this.AmountOfStench);
+			Destroy (this.gameObject);
+		}
 	}
 }
