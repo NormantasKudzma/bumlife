@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
 		public GameObject police;
 		private float pedestrianCoolDown = 0;
 		public float maxCoolDown;
-		private float policeCoolDown = 10f;
+		public float policeCoolDown = 5f;
 	
 		// Update is called once per frame
 		void Update ()

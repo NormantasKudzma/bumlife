@@ -22,6 +22,9 @@ public class Pedestrian : AIMovement
 		protected void Start(){
 			base.Start();
 			cashInWallet = Random.Range(0, maxCashInWallet);
+			if (cashInWallet > 15 || cashInWallet < 0){
+				Debug.Log("Kazkas blogai");
+			}
 		}
 
 		void FixedUpdate ()
