@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 	private Vector3 movementDestination;
-	private Vector3 moveStartPos;
-	private float moveStartTime;
-	private float moveDistance;
 	public bool isMoving = false;
 	private float movementSpeed = 6.5f;
 	
@@ -22,20 +19,13 @@ public class PlayerController : MonoBehaviour {
 			if (isFollowing){
 				followTarget(movementTarget);
 			}
-			else {
-				movePlayer();
-			}
+			movePlayer();
 		}
 	}
 	
 	void movePlayer(){
-		float distCovered = (Time.time - moveStartTime) * movementSpeed;
-		float fracJourney = distCovered / moveDistance;
-		transform.position = Vector3.Lerp(moveStartPos, movementDestination, fracJourney);
-		
-		if (fracJourney >= 1){
-			stopMoving();
-		}
+		float step = Time.deltaTime * movementSpeed;
+		transform.position = Vector3.MoveTowards(transform.position, movementDestination, step);
 	}
 	
 	void rotatePlayer(Vector3 point){
@@ -58,16 +48,12 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void followTarget(Pedestrian target){
-		float step = Time.deltaTime * movementSpeed;
-		transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+		setMovementDestination(target.transform.position);
 	}
 	
 	void setMovementDestination(Vector3 pos){
 		movementDestination = pos;
 		movementDestination.z = transform.position.z;
-		moveStartTime = Time.time;
-		moveStartPos = transform.position;
-		moveDistance = Vector3.Distance(moveStartPos, movementDestination);
 		rotatePlayer(movementDestination);
 	}
 }
