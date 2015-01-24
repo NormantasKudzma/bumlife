@@ -48,7 +48,13 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void followTarget(Pedestrian target){
-		setMovementDestination(target.transform.position);
+		if (target != null){
+			setMovementDestination(target.transform.position);
+		}
+		else {
+			movementTarget = null;
+			stopMoving();
+		}
 	}
 	
 	void setMovementDestination(Vector3 pos){
