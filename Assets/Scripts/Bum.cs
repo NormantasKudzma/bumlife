@@ -19,7 +19,7 @@ public class Bum : MonoBehaviour {
 		get; set;
 	} 
 
-	public virtual void addStenchRadius(int val){
+	public virtual void addStenchRadius(float val){
 		this.stenchRadius += val;
 	}
 
