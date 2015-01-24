@@ -56,16 +56,4 @@ public class Pedestrian : AIMovement
 				}
 			
 		}
-
-		
-		public void OnMouseDown ()
-		{
-				clicked = true;
-				PlayerController plr = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-				plr.startFollowing(this);
-				Debug.Log ("asdasd");
-		}
-
-
-
 }
