@@ -8,13 +8,11 @@ public class WasteContainer : MonoBehaviour {
 	public int MaxMoneyFound;
 	int selection;
 
-
-
 	void OnCollisionEnter (Collision coll) {
 		Player player = coll.gameObject.GetComponent<Player>();
-		if (player.bottleCount != player.MaxBottleCount) {
+		if (player.bottleCount != player.maxBottleCount) {
 			selection = Random.Range (1, 3);
-			if (selection == 1 )player.bottleCount += Random.Range(1, player.MaxBottleCount-player.bottleCount);
+			if (selection == 1 )player.bottleCount += Random.Range(1, player.maxBottleCount-player.bottleCount);
 		}
 		else {
 			selection = Random.Range (2, 3);

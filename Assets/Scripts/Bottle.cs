@@ -21,13 +21,14 @@ public class Bottle : MonoBehaviour
 			}
 		}
 
-	void OnTriggerEnter(Collider col){
-		string tag = col.gameObject.tag;
-		if (tag == "Bum" || tag == "Player") {
-			Bum bum = col.gameObject.GetComponent<Bum>();
-			bum.increaseBottleCount();
-			bum.addStenchRadius(this.AmountOfStench);
-			Destroy (this.gameObject);
+		void OnTriggerEnter (Collider col)
+		{
+				string tag = col.gameObject.tag;
+				if (tag == "Bum" || tag == "Player") {
+						Bum bum = col.gameObject.GetComponent<Bum> ();
+						bum.increaseBottleCount ();
+						bum.addStenchRadius (this.AmountOfStench);
+						Destroy (this.gameObject);
+				}
 		}
-	}
 }

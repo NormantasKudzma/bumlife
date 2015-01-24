@@ -5,10 +5,12 @@ public class BottleShop : MonoBehaviour {
 	
 	public int BottlePrice;
 
-	void OnCollisionEnter (Collision coll) {
+	//void OnCollisionEnter (Collision coll) {
+	void OnTriggerEnter (Collider coll){
 		Player player = coll.gameObject.GetComponent<Player>();
-		//coll.gameObject.GetComponent <Player>();
-		player.addMoney (player.bottleCount * this.BottlePrice);
-		player.bottleCount = 0;
+		if (player != null){
+			player.addMoney (player.bottleCount * this.BottlePrice);
+			player.bottleCount = 0;
+		}
 	}
 }

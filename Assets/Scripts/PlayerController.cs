@@ -63,13 +63,13 @@ public class PlayerController : MonoBehaviour {
 		transform.LookAt(point, new Vector3(0, 0, -1));
 	}
 	
-	/*void OnTriggerEnter(Collider col){
-		stopMoving();
-	}*/
-	
-	void OnCollisionEnter(Collision col){
+	void OnTriggerEnter(Collider col){
 		stopMoving();
 	}
+	/*
+	void OnCollisionEnter(Collision col){
+		stopMoving();
+	}*/
 	
 	public void stopMoving(){
 		animator.SetBool("isMoving", false);
