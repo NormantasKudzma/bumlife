@@ -45,8 +45,9 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void rotatePlayer(Vector3 point){
-		float angle = Vector3.Angle(transform.position, point);
-		transform.localEulerAngles = new Vector3(0, 0, angle);
+		Vector3 dir = point - transform.position;
+		float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 	}
 	
 	void OnCollisionEnter(Collision col){

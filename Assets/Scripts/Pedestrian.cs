@@ -56,4 +56,8 @@ public class Pedestrian : AIMovement
 				}
 			
 		}
+		
+		public void OnMouseDown(){
+			clicked = true;
+		}
 }
