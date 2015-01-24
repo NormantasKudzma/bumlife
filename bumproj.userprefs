@@ -1,18 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bottle.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DrinksShop.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="33" Column="49" />
-      <File FileName="Assets\Scripts\Bum.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Bottle.cs" Line="16" Column="4" />
+      <File FileName="Assets\Scripts\Player.cs" Line="9" Column="8" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="3" Column="23" />
+      <File FileName="Assets\Scripts\Bum.cs" Line="33" Column="1" />
+      <File FileName="Assets\Scripts\Bottle.cs" Line="7" Column="36" />
+      <File FileName="Assets\Scripts\Pedestrian.cs" Line="30" Column="13" />
+      <File FileName="Assets\Scripts\Spawner.cs" Line="44" Column="1" />
+      <File FileName="Assets\Scripts\AIMovement.cs" Line="5" Column="1" />
+      <File FileName="Assets\Scripts\Shower.cs" Line="6" Column="29" />
+      <File FileName="Assets\Scripts\DrinksShop.cs" Line="6" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="Bottle.cs" selected="True" />
+              <Node name="DrinksShop.cs" selected="True" />
             </Node>
           </Node>
         </State>

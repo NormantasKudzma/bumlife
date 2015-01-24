@@ -1,12 +1,20 @@
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+	private Animator animator;
+
 	private Vector3 movementDestination;
 	public bool isMoving = false;
-	private float movementSpeed = 6.5f;
+	public float movementSpeed = 6.5f;
 	
 	public Pedestrian movementTarget;
 	public bool isFollowing = false;
+	public float followStopRange = 2.2f;
+	public float neutralStopRange = 0.35f;
+	
+	void Start(){
+		animator = GetComponent<Animator>();
+	}
 	
 	void Update(){
 		if (Input.GetMouseButtonDown(0)){
@@ -15,6 +23,7 @@ public class PlayerController : MonoBehaviour {
 			bool hit = Physics.Raycast(ray, out rayhit);
 			isMoving = true;
 			isFollowing = false;
+			animator.SetBool("isMoving", true);
 			if (hit){
 				Pedestrian p = rayhit.collider.GetComponent<Pedestrian>();
 				if (p != null){
@@ -39,22 +48,32 @@ public class PlayerController : MonoBehaviour {
 	void movePlayer(){
 		float step = Time.deltaTime * movementSpeed;
 		transform.position = Vector3.MoveTowards(transform.position, movementDestination, step);
-		if (Vector3.Distance(transform.position, movementDestination) <= 0.1){
+		float distance = Vector3.Distance(transform.position, movementDestination);
+		if (isFollowing && distance <= followStopRange){
+			stopMoving();
+			animator.Play("Begging");
+			return;
+		}
+		if (distance <= neutralStopRange){
 			stopMoving();
 		}
 	}
 	
 	void rotatePlayer(Vector3 point){
-		Vector3 dir = point - transform.position;
-		float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		transform.LookAt(point, new Vector3(0, 0, -1));
 	}
+	
+	/*void OnTriggerEnter(Collider col){
+		stopMoving();
+	}*/
 	
 	void OnCollisionEnter(Collision col){
 		stopMoving();
 	}
 	
 	public void stopMoving(){
+		animator.SetBool("isMoving", false);
+		movementTarget = null;
 		isMoving = false;
 		isFollowing = false;
 	}
@@ -62,7 +81,6 @@ public class PlayerController : MonoBehaviour {
 	public void startFollowing(Pedestrian target){
 		movementTarget = target;
 		isFollowing = true;
-		isMoving = true;
 	}
 	
 	void followTarget(Pedestrian target){

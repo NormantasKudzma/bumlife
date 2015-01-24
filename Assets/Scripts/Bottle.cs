@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Bottle : MonoBehaviour
 {
-
-		public float AmountOfStench = 0.5f;
+		public float Duration = 6;
+		public float AmountOfStench = 0.1f;
 		// Use this for initialization
 		void Start ()
 		{
@@ -14,7 +14,11 @@ public class Bottle : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
-	
+			if(this.Duration > 0) {
+				this.Duration -= Time.deltaTime;
+			} else {
+				Destroy(this.gameObject);
+			}
 		}
 
 	void OnTriggerEnter(Collider col){

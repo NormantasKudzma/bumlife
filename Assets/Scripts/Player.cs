@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Player : Bum {
 	private int maxThirst = 100;
-	private float stenchUpdateTimeDelta = 2.0f;
-	private float stenchUpdateValueDelta = 0.25f;
+	public float stenchUpdateTimeDelta = 2.0f;
+	public float stenchUpdateValueDelta = 0.25f;
 	private float nextStenchUpdate;
-	private float thirstUpdateTimeDelta = 3.5f;	
-	private int thirstUpdateValueDelta = 2;
+	public float thirstUpdateTimeDelta = 3.5f;	
+	public int thirstUpdateValueDelta = 2;
 	private float nextThirstUpdate;	
 
 	public int thirst {
