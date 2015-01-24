@@ -34,7 +34,6 @@ public class Player : Bum {
 		if (Time.time > nextStenchUpdate){
 			nextStenchUpdate += stenchUpdateTimeDelta;
 			addStenchRadius(stenchUpdateValueDelta);
-			Debug.Log("Stench radius is now : " + stenchRadius);
 		}
 	}
 	
@@ -42,7 +41,6 @@ public class Player : Bum {
 		if (Time.time > nextThirstUpdate){
 			nextThirstUpdate += thirstUpdateTimeDelta;
 			addThirst(thirstUpdateValueDelta);
-			Debug.Log("Thirst is now : " + thirst);
 			if (thirst > maxThirst){
 				// Game over, you're sober
 				Debug.Log("Game over - you're now sober.");

@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour {
 	
 	void rotatePlayer(Vector3 point){
 		float angle = Vector3.Angle(transform.position, point);
-		Debug.Log("Clickpoint @ " + point + "\tangle : " + angle);
 		transform.localEulerAngles = new Vector3(0, 0, angle);
 		//transform.LookAt(point, transform.up);
 	}
