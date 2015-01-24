@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Pedestrian : AIMovement
@@ -46,7 +46,7 @@ public class Pedestrian : AIMovement
 								waitForBumCooldown -= Time.deltaTime;
 								
 						} else {
-
+								animator.SetBool("isMoving", true);
 								state = 0;
 								rigidbody.velocity = velocity;
 								transform.rotation = rotation;
@@ -64,10 +64,11 @@ public class Pedestrian : AIMovement
 						velocity = new Vector3 (rigidbody.velocity.x, rigidbody.velocity.y, rigidbody.velocity.z);
 						rotation = transform.rotation;
 						rigidbody.velocity = Vector3.zero;
-						transform.LookAt (collider.gameObject.transform.position);
+						transform.LookAt (collider.gameObject.transform.position, new Vector3(0, 0, -1));
 						state = 1;
 						waitForBumCooldown = 0.5f;
 						wasBegged = true;
+						animator.SetBool("isMoving", false);
 						Player plr = collider.GetComponent<Player>();
 						if (plr != null){
 							rollForMoney(plr);
