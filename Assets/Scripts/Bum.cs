@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Bum : MonoBehaviour {
+public class Bum : MonoBehaviour {
 	protected int maxBottleCount = 10;
 
 	public int bottleCount {
@@ -19,7 +19,11 @@ public abstract class Bum : MonoBehaviour {
 		get; set;
 	} 
 
-	public abstract void addStenchRadius(int val);
+	public virtual void addStenchRadius(int val){
+		this.stenchRadius += val;
+	}
 
-	public abstract void increaseBottleCount();
+	public virtual void increaseBottleCount(){
+		bottleCount++;
+	}
 }

@@ -13,7 +13,7 @@ public class bottle : MonoBehaviour {
 	
 	}
 
-	private void On2dCollisionEnter(Collision2D collision){
+	private void OnCollisionEnter(Collision collision){
 		Bum bum = collision.gameObject.GetComponent<Bum>();
 		bum.increaseBottleCount ();
 	}
