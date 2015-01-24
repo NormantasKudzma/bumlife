@@ -10,7 +10,7 @@ public class Bottle : MonoBehaviour
 		// Use this for initialization
 		void Start (){
 			for (int i = 0; i < 3; i++){
-				sounds[i] = Resources.LoadAssetAtPath<AudioClip>("Assets/Audio/BottlePickup" + (i + 1));
+				sounds[i] = Resources.Load<AudioClip>("Audio/BottlePickup" + (i + 1));
 			}
 		}
 	
@@ -33,7 +33,7 @@ public class Bottle : MonoBehaviour
 						bum.addStenchRadius (this.AmountOfStench);
 						audio.clip = sounds[Random.Range(0, sounds.Length)];
 						audio.Play();
-						Destroy (this.gameObject);
+						Destroy (this.gameObject, audio.clip.length);
 				}
 		}
 }
