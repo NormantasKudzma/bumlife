@@ -1,16 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Pedestrian.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Spawner.cs">
     <Files>
-      <File FileName="Assets\Scripts\Spawner.cs" Line="39" Column="29" />
-      <File FileName="Assets\Scripts\AIMovement.cs" Line="17" Column="7" />
-      <File FileName="Assets\Scripts\Destruction.cs" Line="8" Column="3" />
-      <File FileName="Assets\Scripts\Bottle.cs" Line="21" Column="4" />
-      <File FileName="Assets\Scripts\Pedestrian.cs" Line="21" Column="6" />
+      <File FileName="Assets\Scripts\Pedestrian.cs" Line="46" Column="1" />
+      <File FileName="Assets\Scripts\Spawner.cs" Line="38" Column="10" />
+      <File FileName="Assets\Scripts\AIMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Destruction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Bottle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Bum.cs" Line="22" Column="28" />
+      <File FileName="Assets\Scripts\AIPolice.cs" Line="9" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Khoa\Desktop\New folder (2)\Assets\Scripts\Pedestrian.cs" line="25" />
+      <Breakpoint file="C:\Users\Khoa\Desktop\New folder (2)\Assets\Scripts\Bottle.cs" line="24" />
+      <Breakpoint file="C:\Users\Khoa\Desktop\New folder (2)\Assets\Scripts\Pedestrian.cs" line="23" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
