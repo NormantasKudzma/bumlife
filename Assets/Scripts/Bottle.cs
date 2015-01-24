@@ -15,7 +15,7 @@ public class Bottle : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision){
-		if (collision.gameObject.tag == "Bum") {
+		if (collision.gameObject.tag == "Bum" || collision.gameObject.tag == "Player") {
 			Bum bum = collision.gameObject.GetComponent<Bum>();
 			bum.increaseBottleCount();
 			bum.addStenchRadius(this.AmountOfStench);
