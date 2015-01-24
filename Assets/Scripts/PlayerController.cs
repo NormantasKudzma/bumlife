@@ -22,7 +22,9 @@ public class PlayerController : MonoBehaviour {
 			if (isFollowing){
 				followTarget(movementTarget);
 			}
-			movePlayer();
+			else {
+				movePlayer();
+			}
 		}
 	}
 	
@@ -56,7 +58,8 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void followTarget(Pedestrian target){
-		setMovementDestination(target.transform.position);
+		float step = Time.deltaTime * movementSpeed;
+		transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
 	}
 	
 	void setMovementDestination(Vector3 pos){
