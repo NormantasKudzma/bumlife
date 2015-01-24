@@ -8,7 +8,10 @@ public class DrinksShop : MonoBehaviour {
 	void OnCollisionEnter (Collision coll) {
 		Player player = coll.gameObject.GetComponent<Player>();
 		//coll.gameObject.GetComponent <Player>();
-		player.addMoney (-this.DrinkPrice);
-		player.addThirst (-this.ThirstRegen);
+		if (player.moneyCount >=this.DrinkPrice){
+			player.addMoney (-this.DrinkPrice);
+			player.addThirst (-this.ThirstRegen);
+		}
+
 	}
 }

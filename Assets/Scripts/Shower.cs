@@ -8,9 +8,10 @@ public class Shower : MonoBehaviour {
 
 	void OnCollisionEnter (Collision coll) {
 		Player player = coll.gameObject.GetComponent<Player>();
-		//coll.gameObject.GetComponent <Player>();
-		player.addStenchRadius (-this.ShowerStrength);
-		player.addMoney (-this.ShowerPrice);
+		if (player.moneyCount >=this.ShowerPrice){
+			player.addStenchRadius (-this.ShowerStrength);
+			player.addMoney (-this.ShowerPrice);
+		}
 
 	}
 }
