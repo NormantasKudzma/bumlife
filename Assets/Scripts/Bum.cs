@@ -4,13 +4,16 @@ using System.Collections;
 public class Bum : MonoBehaviour {
 	protected int maxBottleCount = 10;
 
+	protected int _bottleCount = 0;
 	public int bottleCount {
 		get {
-			return bottleCount;
+			return _bottleCount;
 		}
 		set {
 			if (value > maxBottleCount){
-				value = maxBottleCount;
+				_bottleCount = maxBottleCount;
+			} else {
+				_bottleCount = value;
 			}
 		}
 	}
