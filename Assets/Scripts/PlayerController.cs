@@ -26,10 +26,14 @@ public class PlayerController : MonoBehaviour {
 	void movePlayer(){
 		float step = Time.deltaTime * movementSpeed;
 		transform.position = Vector3.MoveTowards(transform.position, movementDestination, step);
+		//stopmoving
 	}
 	
 	void rotatePlayer(Vector3 point){
-		transform.LookAt(point, transform.up);
+		float angle = Vector3.Angle(transform.position, point);
+		Debug.Log("Clickpoint @ " + point + "\tangle : " + angle);
+		transform.localEulerAngles = new Vector3(0, 0, angle);
+		//transform.LookAt(point, transform.up);
 	}
 	
 	void OnCollisionEnter(Collision col){
