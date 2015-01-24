@@ -29,7 +29,10 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void rotatePlayer(Vector3 point){
-		transform.LookAt(point, transform.up);
+		point -= transform.position;
+		float angle = Mathf.Atan2 (point.y, point.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
+		//transform.LookAt(point, transform.up);
 	}
 	
 	void OnCollisionEnter(Collision col){
