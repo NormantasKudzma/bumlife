@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-	private Vector2 movementDirection;
+	private Vector3 movementDirection;
 	private float maxSpeed = 6.5f;
 	
 	void Update(){
