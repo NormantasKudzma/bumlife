@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Pedestrian.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Spawner.cs" Line="39" Column="29" />
+      <File FileName="Assets\Scripts\AIMovement.cs" Line="17" Column="7" />
+      <File FileName="Assets\Scripts\Destruction.cs" Line="8" Column="3" />
+      <File FileName="Assets\Scripts\Bottle.cs" Line="21" Column="4" />
+      <File FileName="Assets\Scripts\Pedestrian.cs" Line="21" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

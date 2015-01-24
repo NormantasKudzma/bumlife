@@ -11,9 +11,22 @@ public class PlayerController : MonoBehaviour {
 	void Update(){
 		if (Input.GetMouseButtonDown(0)){
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			setMovementDestination(ray.origin);
+			RaycastHit rayhit;
+			bool hit = Physics.Raycast(ray, out rayhit);
 			isMoving = true;
 			isFollowing = false;
+			if (hit){
+				Pedestrian p = rayhit.collider.GetComponent<Pedestrian>();
+				if (p != null){
+					startFollowing(p);
+				}
+				else {
+					setMovementDestination(ray.origin);
+				}
+			}
+			else {
+				setMovementDestination(ray.origin);
+			}
 		}
 		if (isMoving){
 			if (isFollowing){
@@ -26,13 +39,22 @@ public class PlayerController : MonoBehaviour {
 	void movePlayer(){
 		float step = Time.deltaTime * movementSpeed;
 		transform.position = Vector3.MoveTowards(transform.position, movementDestination, step);
+		if (Vector3.Distance(transform.position, movementDestination) <= 0.1){
+			stopMoving();
+		}
 	}
 	
 	void rotatePlayer(Vector3 point){
+<<<<<<< HEAD
 		point -= transform.position;
 		float angle = Mathf.Atan2 (point.y, point.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 		//transform.LookAt(point, transform.up);
+=======
+		Vector3 dir = point - transform.position;
+		float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+>>>>>>> origin/nkbranch
 	}
 	
 	void OnCollisionEnter(Collision col){

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Bum : MonoBehaviour {
-	protected int maxBottleCount = 10;
+	public int MaxBottleCount = 10;
 
 	protected int _bottleCount = 0;
 	public int bottleCount {
@@ -10,8 +10,8 @@ public class Bum : MonoBehaviour {
 			return _bottleCount;
 		}
 		set {
-			if (value > maxBottleCount){
-				_bottleCount = maxBottleCount;
+			if (value > MaxBottleCount){
+				_bottleCount = MaxBottleCount;
 			} else {
 				_bottleCount = value;
 			}
