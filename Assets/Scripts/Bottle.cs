@@ -14,7 +14,7 @@ public class bottle : MonoBehaviour {
 	}
 
 	private void On2dCollisionEnter(Collision2D collision){
-		Player player = collision.gameObject.GetComponent<Player>();
-		player.increaseBottleCount ();
+		Bum bum = collision.gameObject.GetComponent<Bum>();
+		bum.increaseBottleCount ();
 	}
 }

@@ -1,23 +1,7 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour {
-	private int maxBottleCount = 10;
+public class Player : Bum {
 	private int maxThirst = 100;
-	
-	public int bottleCount {
-		get {
-			return bottleCount;
-		}
-		set {
-			if (value > maxBottleCount){
-				value = maxBottleCount;
-			}
-		}
-	}
-	
-	public float stenchRadius {
-		get; set;
-	}
 	
 	public int thirst {
 		get; set;
@@ -27,15 +11,15 @@ public class Player : MonoBehaviour {
 		get; set;
 	}
 	
-	public void addStenchRadius(int val){
-		stenchRadius += value;
+	public override void addStenchRadius(int val){
+		this.stenchRadius += val;
 	}
-	
+//	
 	public void addThirst(int val){
 		thirst += val;
 	}
 	
-	public void increaseBottleCount(){
+	public override void increaseBottleCount(){
 		bottleCount++;
 	}
 	
