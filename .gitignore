@@ -1,4 +1,6 @@
-/Temp
-/ProjectSettings
+Temp/
+ProjectSettings/
 *.meta
-/Library
+Library/
+*.sln
+*.csproj
