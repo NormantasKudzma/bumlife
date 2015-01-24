@@ -12,18 +12,18 @@ public class WasteContainer : MonoBehaviour {
 
 	void OnCollisionEnter (Collision coll) {
 		Player player = coll.gameObject.GetComponent<Player>();
-		if (player.bottleCount != maxBottleCount) {
-			selection = Random.Range (1.0f, 3.0f);
-			if (selection == 1 )player.bottleCount += Random.Range(1.0f, player.maxBottleCount-player.bottleCount);
+		if (player.bottleCount != player.MaxBottleCount) {
+			selection = Random.Range (1, 3);
+			if (selection == 1 )player.bottleCount += Random.Range(1, player.MaxBottleCount-player.bottleCount);
 		}
 		else {
-			selection = Random.Range (2.0f, 3.0f);
+			selection = Random.Range (2, 3);
 		}
 		if (selection == 2){
-			player.addStenchRadius (Random.Range(5.0f, this.MaxStenchAdd));
+			player.addStenchRadius (Random.Range(5, this.MaxStenchAdd));
 		}
 		if (selection == 3){
-				player.addMoney (Random.Range(10.0f,this.MaxMoneyFound));
+				player.addMoney (Random.Range(10,this.MaxMoneyFound));
 		}
 	}
 }
