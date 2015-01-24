@@ -23,7 +23,7 @@ public class Bum : MonoBehaviour {
 	} 
 
 	public virtual void addStenchRadius(float val){
-		this.stenchRadius += val;
+		this.stenchRadius = (this.stenchRadius + val > 0) ? this.stenchRadius + val : 0;
 	}
 
 	public virtual void increaseBottleCount(){

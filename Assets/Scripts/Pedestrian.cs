@@ -12,7 +12,15 @@ public class Pedestrian : AIMovement
 		private Vector3 velocity;
 		private Quaternion rotation;
 		private bool wasBegged = false;
+		
+		public int cashInWallet = 5;
+		public int maxCashInWallet = 10;
+		private int successChance = 40;
+		private float maxStenchValue = 2f;
 
+		void Start(){
+			cashInWallet = Random.Range(0, maxCashInWallet);
+		}
 
 		void FixedUpdate ()
 		{
@@ -53,6 +61,10 @@ public class Pedestrian : AIMovement
 						state = 1;
 						waitForBumCooldown = 0.5f;
 						wasBegged = true;
+						Player plr = collider.GetComponent<Player>();
+						if (plr != null){
+							rollForMoney(plr);
+						}
 				}
 			
 		}
@@ -60,4 +72,19 @@ public class Pedestrian : AIMovement
 		public void OnMouseDown(){
 			clicked = true;
 		}
+		
+		void rollForMoney(Player plr){
+			int successRoll = Random.Range(0, 100);
+			if (successRoll < successChance - (plr.stenchRadius * successChance / maxStenchValue)){
+				int minVal = (int)(plr.stenchRadius * maxStenchValue / cashInWallet);
+				int amt = Random.Range(minVal, cashInWallet);
+				plr.addMoney(amt);
+				cashInWallet -= amt;
+				Debug.Log("SuccessRoll : " + successRoll + "\tMaxcash " + cashInWallet + 
+					"\tminvalue " + minVal + "\tamountgained : " + amt);
+			}
+			else {
+				Debug.Log("Success roll " + successRoll + "\tsuccess chance : " + (successChance - (plr.stenchRadius * successChance / maxStenchValue)));
+			}
+	}
 }
