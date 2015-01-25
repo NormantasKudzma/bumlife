@@ -9,6 +9,8 @@ public class Shower : MonoBehaviour {
 	void OnTriggerEnter (Collider coll){
 		Player player = coll.gameObject.GetComponent<Player>();
 		if (player != null && player.moneyCount >= this.ShowerPrice){
+			audio.clip = Resources.Load<AudioClip>("Audio/Shower");
+			audio.Play();
 			player.addStenchRadius (-this.ShowerStrength);
 			player.addMoney (-this.ShowerPrice);
 		}

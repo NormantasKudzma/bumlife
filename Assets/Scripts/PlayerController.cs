@@ -11,9 +11,14 @@ public class PlayerController : MonoBehaviour {
 	public bool isFollowing = false;
 	public float followStopRange = 2.2f;
 	public float neutralStopRange = 0.35f;
+
+	private AudioClip [] begSounds = new AudioClip[3];
 	
 	void Start(){
 		animator = GetComponent<Animator>();
+		for (int i = 0; i < 3; i++){
+			begSounds[i] = Resources.Load<AudioClip>("Audio/BumBeg" + (i + 1));
+		}
 	}
 	
 	void Update(){
@@ -50,6 +55,8 @@ public class PlayerController : MonoBehaviour {
 		transform.position = Vector3.MoveTowards(transform.position, movementDestination, step);
 		float distance = Vector3.Distance(transform.position, movementDestination);
 		if (isFollowing && distance <= followStopRange){
+			audio.clip = begSounds[Random.Range(0, begSounds.Length)];	
+			audio.Play();
 			stopMoving();
 			animator.Play("Begging");
 			return;
