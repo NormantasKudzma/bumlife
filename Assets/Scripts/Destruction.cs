@@ -3,9 +3,92 @@ using System.Collections;
 
 public class Destruction : MonoBehaviour
 {
-		void OnTriggerExit (Collider collider)
+		void OnTriggerEnter (Collider collider)
 		{
-				Destroy (collider.gameObject);
+				if (collider.tag != "Stench") {
+						Destroy (collider.gameObject);
+				}
+			
 		}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

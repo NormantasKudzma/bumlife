@@ -12,7 +12,16 @@ public class Pedestrian : AIMovement
 		private Vector3 velocity;
 		private Quaternion rotation;
 
-		private bool wasBegged = false;
+		public bool wasBegged = false;
+
+		
+		void Start ()
+		{
+				base.Start ();
+				velocity = new Vector3 (rigidbody.velocity.x, rigidbody.velocity.y, rigidbody.velocity.z);
+				rotation = transform.rotation;
+				
+		}
 
 
 		void FixedUpdate ()
@@ -47,7 +56,11 @@ public class Pedestrian : AIMovement
 
 		public void OnTriggerEnter (Collider collider)
 		{
-				if (!wasBegged && (collider.gameObject.tag == "Bum" || (collider.gameObject.tag == "Player" && clicked))) {
+
+				if (state == 0 && !wasBegged && 
+						((collider.gameObject.tag == "Bum" 
+						&& !collider.gameObject.GetComponent<AIBum> ().isCaught) 
+						|| (collider.gameObject.tag == "Player" && clicked))) {
 						
 						velocity = new Vector3 (rigidbody.velocity.x, rigidbody.velocity.y, rigidbody.velocity.z);
 						rotation = transform.rotation;

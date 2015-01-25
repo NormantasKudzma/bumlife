@@ -20,7 +20,7 @@ public class Bottle : MonoBehaviour
 		void OnTriggerEnter (Collider col)
 		{
 				string tag = col.gameObject.tag;
-				if (tag == "Bum" || tag == "Player") {
+				if ((tag == "Bum" && !col.GetComponent<AIBum> ().isCaught) || tag == "Player") {
 						Bum bum = col.gameObject.GetComponent<Bum> ();
 						bum.increaseBottleCount ();
 						bum.addStenchRadius (this.AmountOfStench);

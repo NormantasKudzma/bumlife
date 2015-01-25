@@ -3,12 +3,20 @@ using System.Collections;
 
 public class AIPolice : AIMovement
 {
-		private GameObject bum = null;
+		public GameObject bum = null;
 		private bool hasCaught = false;
 		private Vector3 originalVelocity;
-		void Update ()
+
+		void Start ()
 		{
-				
+				base.Start ();
+				originalVelocity = rigidbody.velocity;
+		}
+
+		void FixedUpdate ()
+		{
+				if (bum == null && rigidbody.velocity.magnitude < Mathf.Epsilon)
+						rigidbody.velocity = originalVelocity; 
 		}
 		void OnTriggerEnter (Collider other)
 		{
@@ -16,10 +24,9 @@ public class AIPolice : AIMovement
 						if (bum == null || bum.tag == "Player") {
 								bum = other.transform.parent.gameObject;
 						}
-						originalVelocity = rigidbody.velocity;
 						rigidbody.velocity = new Vector3 ();
 				} else if (other.tag == "Bum") {
-			
+						other.gameObject.GetComponent<AIBum> ().isCaught = true;
 						Debug.Log ("Something smells fishy");
 						hasCaught = true;
 						rigidbody.velocity = new Vector3 (1, 0, 0) * movementSpeed;
@@ -38,7 +45,7 @@ public class AIPolice : AIMovement
 								bum = other.transform.parent.gameObject;
 								rigidbody.velocity = new Vector3 ();
 						}
-						transform.position = Vector3.MoveTowards (transform.position, bum.transform.position, Time.deltaTime);
+						transform.position = Vector3.MoveTowards (transform.position, bum.transform.position, Time.deltaTime * movementSpeed);
 					
 				}
 		}
@@ -53,10 +60,4 @@ public class AIPolice : AIMovement
 				}
 		}
 
-		void FixedUpdate ()
-		{
-				if (bum != null) {
-						
-				}
-		}
 }
