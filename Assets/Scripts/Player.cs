@@ -27,6 +27,14 @@ public class Player : Bum {
 
 	public void addThirst(int val){
 		thirst += val;
+		if (thirst < 0){
+			thirst = 0;
+		}
+		
+		Debug.Log("Thirst is " + thirst);
+		float percent = 1.0f - (1.0f * thirst / maxThirst);
+		Vector3 old = thirstBar.transform.localScale;
+		thirstBar.transform.localScale = new Vector3(old.x, barHeight * percent, old.z);
 	}
 	
 	public void addMoney(int val){
@@ -48,13 +56,12 @@ public class Player : Bum {
 	
 	void updateThirst(){
 		if (Time.time > nextThirstUpdate){
-			nextThirstUpdate += thirstUpdateTimeDelta;
+			nextThirstUpdate = Time.time + thirstUpdateTimeDelta;
 			addThirst(thirstUpdateValueDelta);
 			if (thirst > maxThirst){
 				// Game over, you're sober
 				Debug.Log("Game over - you're now sober.");
 			}
-			//float percent = (1.0f * thirst / maxThirst)
 		}
 	}
 	

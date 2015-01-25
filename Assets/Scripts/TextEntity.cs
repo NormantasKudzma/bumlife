@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class TextEntity : MonoBehaviour {
-	public const float LIFETIME = 1.75f;
+	public const float LIFETIME = 2.55f;
 	float created;
 	public bool moving = true;
 	
@@ -12,7 +12,7 @@ public class TextEntity : MonoBehaviour {
 	void FixedUpdate(){	
 		if (moving){
 			Vector3 cur = transform.position;
-			cur.y += 0.02f;
+			cur.y += 0.015f;
 			transform.position = cur;
 		}
 		if (Time.time - created > LIFETIME){

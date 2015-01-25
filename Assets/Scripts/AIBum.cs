@@ -34,7 +34,6 @@ public class AIBum : AIMovement
 										transform.rotation = rotation;
 								}
 								waitForPedstrianCooldown -= Time.deltaTime;
-					
 						} else {
 								state = 0;
 								rigidbody.velocity = velocity;
@@ -66,6 +65,7 @@ public class AIBum : AIMovement
 						Destroy (GetComponentInChildren<SightRadius> ());
 						int movementDirection = (Random.Range (0, 2) == 0) ? 1 : -1;
 						rigidbody.velocity = new Vector3 (movementDirection, 0, 0) * movementSpeed * 2;
+						transform.LookAt(rigidbody.velocity, new Vector3(0, 0, -1));
 				}
 		}
 }
