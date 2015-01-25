@@ -10,7 +10,8 @@ public class Pedestrian : AIMovement{
 		public int state = 0;
 		private Vector3 velocity;
 		private Quaternion rotation;
-		private bool wasBegged = false;
+		
+		public bool wasBegged = false;
 		public int cashInWallet = 5;
 		public int maxCashInWallet = 10;
 		private int successChance = 40;
@@ -18,6 +19,8 @@ public class Pedestrian : AIMovement{
 
 		protected void Start (){
 				base.Start ();
+				velocity = new Vector3 (rigidbody.velocity.x, rigidbody.velocity.y, rigidbody.velocity.z);
+				rotation = transform.rotation;
 				cashInWallet = Random.Range (0, maxCashInWallet);
 				if (cashInWallet > 15 || cashInWallet < 0) {
 						Debug.Log ("Kazkas blogai");
@@ -54,24 +57,28 @@ public class Pedestrian : AIMovement{
 		}
 
 		public void OnTriggerEnter (Collider collider){
-				if ((collider.gameObject.tag == "Bum" || (collider.gameObject.tag == "Player" && clicked))) {
+		if (state == 0 && 
+			    ((collider.gameObject.tag == "Bum" 
+			  && !collider.gameObject.GetComponent<AIBum> ().isCaught) 
+			 || (collider.gameObject.tag == "Player" && clicked))) {
 					Player plr = collider.GetComponent<Player> ();
-					getBegged (plr);
+					getBegged (collider.transform.position, plr);
 				}
 			
 		}
 		
-		public void getBegged (Player plr){
+		public void getBegged (Vector3 pos, Player plr){
 				if (!wasBegged) {
 						velocity = new Vector3 (rigidbody.velocity.x, rigidbody.velocity.y, rigidbody.velocity.z);
 						rotation = transform.rotation;
 						rigidbody.velocity = Vector3.zero;
-						transform.LookAt (plr.transform.position, new Vector3 (0, 0, -1));
+						transform.LookAt (pos, new Vector3 (0, 0, -1));
 						state = 1;
 						waitForBumCooldown = 0.5f;
 						wasBegged = true;
-						animator.SetBool ("isMoving", false);
-						
+						if (animator != null){
+							animator.SetBool ("isMoving", false);
+						}						
 						if (plr != null) {
 							rollForMoney (plr);
 						}

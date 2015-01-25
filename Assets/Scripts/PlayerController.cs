@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 		transform.position = Vector3.MoveTowards(transform.position, movementDestination, step);
 		float distance = Vector3.Distance(transform.position, movementDestination);
 		if (isFollowing && distance <= followStopRange){
-			movementTarget.getBegged(GetComponent<Player>());
+			movementTarget.getBegged(transform.position, GetComponent<Player>());
 			animator.Play("Begging");
 			stopMoving();
 			return;
