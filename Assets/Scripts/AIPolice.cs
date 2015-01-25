@@ -31,7 +31,10 @@ public class AIPolice : AIMovement
 						hasCaught = true;
 						rigidbody.velocity = new Vector3 (1, 0, 0) * movementSpeed;
 						other.gameObject.rigidbody.velocity = new Vector3 (1, 0, 0) * movementSpeed;
+						animator.Play("Hit");
+						animator.SetBool("caughtBum", true);
 				} else if (other.tag == "Player") {
+						animator.Play("Hit");
 						Destroy (other.gameObject);
 				}
 		}
@@ -46,7 +49,7 @@ public class AIPolice : AIMovement
 								rigidbody.velocity = new Vector3 ();
 						}
 						transform.position = Vector3.MoveTowards (transform.position, bum.transform.position, Time.deltaTime * movementSpeed);
-					
+						transform.LookAt(bum.transform.position, new Vector3(0, 0, -1));
 				}
 		}
 
@@ -57,6 +60,8 @@ public class AIPolice : AIMovement
 						bum = null;
 						Debug.Log (originalVelocity);
 						rigidbody.velocity = originalVelocity;
+					transform.LookAt(originalVelocity, new Vector3(0, 0, -1));
+					animator.SetBool("caughtBum", false);
 				}
 		}
 

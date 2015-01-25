@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Pedestrian : AIMovement
@@ -11,7 +11,7 @@ public class Pedestrian : AIMovement
 		public int state = 0;
 		private Vector3 velocity;
 		private Quaternion rotation;
-
+		
 		public bool wasBegged = false;
 
 		
@@ -22,7 +22,19 @@ public class Pedestrian : AIMovement
 				rotation = transform.rotation;
 				
 		}
+	
+		public int cashInWallet = 5;
+		public int maxCashInWallet = 10;
+		private int successChance = 40;
+		private float maxStenchValue = 5f;
 
+		protected void Start(){
+			base.Start();
+			cashInWallet = Random.Range(0, maxCashInWallet);
+			if (cashInWallet > 15 || cashInWallet < 0){
+				Debug.Log("Kazkas blogai");
+			}
+		}
 
 		void FixedUpdate ()
 		{
@@ -43,7 +55,7 @@ public class Pedestrian : AIMovement
 								waitForBumCooldown -= Time.deltaTime;
 								
 						} else {
-
+								animator.SetBool("isMoving", true);
 								state = 0;
 								rigidbody.velocity = velocity;
 								transform.rotation = rotation;
@@ -65,22 +77,35 @@ public class Pedestrian : AIMovement
 						velocity = new Vector3 (rigidbody.velocity.x, rigidbody.velocity.y, rigidbody.velocity.z);
 						rotation = transform.rotation;
 						rigidbody.velocity = Vector3.zero;
-						transform.LookAt (collider.gameObject.transform.position);
+						transform.LookAt (collider.gameObject.transform.position, new Vector3(0, 0, -1));
 						state = 1;
 						waitForBumCooldown = 0.5f;
 						wasBegged = true;
+						animator.SetBool("isMoving", false);
+						Player plr = collider.GetComponent<Player>();
+						if (plr != null){
+							rollForMoney(plr);
+						}
 				}
 			
 		}
-
 		
-		public void OnMouseDown ()
-		{
-				Debug.Log ("asdasd");
-				clicked = true;
-				
+		public void OnMouseDown(){
+			clicked = true;
 		}
-
-
-
+		
+		void rollForMoney(Player plr){
+			int successRoll = Random.Range(0, 100);
+			if (successRoll < successChance - (plr.stenchRadius * successChance / maxStenchValue)){
+				int minVal = (int)(plr.stenchRadius * maxStenchValue / cashInWallet);
+				int amt = Random.Range(minVal, cashInWallet);
+				plr.addMoney(amt);
+				cashInWallet -= amt;
+				Debug.Log("SuccessRoll : " + successRoll + "\tMaxcash " + cashInWallet + 
+					"\tminvalue " + minVal + "\tamountgained : " + amt);
+			}
+			else {
+				Debug.Log("Success roll " + successRoll + "\tsuccess chance : " + (successChance - (plr.stenchRadius * successChance / maxStenchValue)));
+			}
+	}
 }
