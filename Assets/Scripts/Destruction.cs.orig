@@ -1,0 +1,101 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Destruction : MonoBehaviour
+{
+		void OnTriggerEnter (Collider collider)
+		{
+<<<<<<< HEAD
+				if (collider.tag != "Stench") {
+						Destroy (collider.gameObject);
+				}
+			
+=======
+			string tag = collider.tag;
+			if (tag != "Stench" && tag != "Player"){
+				Destroy (collider.gameObject);
+			}
+>>>>>>> origin/nkbranch
+		}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
