@@ -7,7 +7,15 @@ public class Player : Bum {
 	private float nextStenchUpdate;
 	public float thirstUpdateTimeDelta = 3.5f;	
 	public int thirstUpdateValueDelta = 2;
-	private float nextThirstUpdate;	
+	private float nextThirstUpdate;
+	
+	public GUIText moneyText;
+	public GUITexture thirstBar;
+	float barHeight;
+	
+	void Start(){
+		barHeight = thirstBar.transform.localScale.y;
+	}
 
 	public int thirst {
 		get; set;
@@ -23,6 +31,7 @@ public class Player : Bum {
 	
 	public void addMoney(int val){
 		moneyCount += val;
+		updateMoneyText();
 	}
 	
 	void Update(){
@@ -45,6 +54,11 @@ public class Player : Bum {
 				// Game over, you're sober
 				Debug.Log("Game over - you're now sober.");
 			}
+			//float percent = (1.0f * thirst / maxThirst)
 		}
+	}
+	
+	void updateMoneyText(){
+		moneyText.text = moneyCount.ToString("D6") + "$";
 	}
 }

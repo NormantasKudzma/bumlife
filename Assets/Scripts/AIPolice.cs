@@ -27,6 +27,8 @@ public class AIPolice : AIMovement
 						animator.Play("Hit");
 						animator.SetBool("caughtBum", true);
 				} else if (other.tag == "Player") {
+						TextGen.MakeText("Busted!", Color.black, new Vector3(-0.2f, 0, 0), 110, false);
+						TextGen.MakeText("Busted!", Color.white, new Vector3(0, 0, 0), 110, false);
 						animator.Play("Hit");
 						Destroy (other.gameObject);
 				}

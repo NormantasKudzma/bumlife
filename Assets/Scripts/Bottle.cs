@@ -33,7 +33,7 @@ public class Bottle : MonoBehaviour
 						bum.addStenchRadius (this.AmountOfStench);
 						audio.clip = sounds[Random.Range(0, sounds.Length)];
 						audio.Play();
-						Destroy (this.gameObject, audio.clip.length);
+						Destroy (this.gameObject, 0.3f);
 				}
 		}
 }

@@ -18,25 +18,36 @@ public class PlayerController : MonoBehaviour {
 	
 	void Update(){
 		if (Input.GetMouseButtonDown(0)){
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit rayhit;
-			bool hit = Physics.Raycast(ray, out rayhit);
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);	
+			bool hit = false;
+			RaycastHit [] rayhit = Physics.RaycastAll(ray);
+			Pedestrian p = null;
 			isMoving = true;
-			isFollowing = false;
 			animator.SetBool("isMoving", true);
+			foreach (RaycastHit i in rayhit){
+				p = i.collider.GetComponent<Pedestrian>();
+				if (p != null){
+					hit = true;
+					break;
+				}
+			}
 			if (hit){
-				Pedestrian p = rayhit.collider.GetComponent<Pedestrian>();
 				if (p != null){
 					startFollowing(p);
 				}
-				else {
+				/*else {
+					isFollowing = false;
 					setMovementDestination(ray.origin);
-				}
+				}*/
 			}
 			else {
+				isFollowing = false;
 				setMovementDestination(ray.origin);
 			}
 		}
+	}
+	
+	void FixedUpdate(){
 		if (isMoving){
 			if (isFollowing){
 				followTarget(movementTarget);
@@ -50,8 +61,9 @@ public class PlayerController : MonoBehaviour {
 		transform.position = Vector3.MoveTowards(transform.position, movementDestination, step);
 		float distance = Vector3.Distance(transform.position, movementDestination);
 		if (isFollowing && distance <= followStopRange){
-			stopMoving();
+			movementTarget.getBegged(GetComponent<Player>());
 			animator.Play("Begging");
+			stopMoving();
 			return;
 		}
 		if (distance <= neutralStopRange){
@@ -63,13 +75,10 @@ public class PlayerController : MonoBehaviour {
 		transform.LookAt(point, new Vector3(0, 0, -1));
 	}
 	
-	/*void OnTriggerEnter(Collider col){
+	void OnCollisionStay(Collision col){
+		rigidbody.velocity = Vector3.zero;
 		stopMoving();
-	}*/
-	
-	/*void OnCollisionEnter(Collision col){
-		stopMoving();
-	}*/
+	}
 	
 	public void stopMoving(){
 		animator.SetBool("isMoving", false);
